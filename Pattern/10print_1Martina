@@ -1,29 +1,18 @@
-let x = 0;
-let y = 0;
-let size = 50;
-let spacing = 30;
-
 function setup() {
-   createCanvas(windowWidth, windowWidth);
-  background(500)
+  createCanvas(400, 400);
+  background(255); 
+  noLoop(); 
 }
 
 function draw() {
-  noFill(); //no rimepimento
-  strokeWeight(1);
+  let colors = [color(150), color(255, 165, 0)]; 
 
-  if(random(1) < 0.5) {
-  
-    circle(x, y, size);
-  }  else {
-    circle(x, y, size /2);
+  noStroke(); 
+
+  for (let x = 20; x < width; x += 50) { 
+    for (let y = 20; y < height; y += 50) {  
+      fill(random(colors)); 
+      ellipse(x, y, 40, 40); 
+    }
   }
-  
-  x += size; 
-  
-  if(x > width) {   
-    x = 0;
-    y += size;
-  }
-  
 }
