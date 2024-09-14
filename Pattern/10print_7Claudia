@@ -1,0 +1,30 @@
+function setup() {
+  createCanvas(windowWidth, windowWidth);
+  noLoop ();
+}
+
+function draw() {
+  let gridSize = 40;  // Dimensione dei quadrati
+
+  for (let y = 0; y < height; y += gridSize) {
+    for (let x = 0; x < width; x += gridSize) {
+      if ((x + y) % (gridSize * 2) === 0) {
+        fill(random(255), random(255), random(255));  // Colore casuale
+      } else {
+        fill(255);  // Bianco
+      }
+      rect(x, y, gridSize, gridSize);  // Disegna un quadrato
+    }
+  }
+}
+
+// Ridimensiona il canvas se la finestra viene ridimensionata
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  redraw();  // Ridisegna il pattern
+}
+
+// Interazione con il mouse: cambia colore delle celle quando si clicca
+function mousePressed() {
+  redraw();  // Ridisegna il pattern ogni volta che clicchi
+}

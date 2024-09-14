@@ -1,0 +1,45 @@
+let rows = 10;  // Numero di righe
+let cols = 10;  // Numero di colonne
+let circleSize; //Larghezza della cella della griglia
+let colors = [];
+
+function setup() {
+  createCanvas(windowWidth, windowWidth);
+  circleSize = width / cols; //Dimensione cerchi
+
+  // Inizializza i colori dei cerchi
+  for (let i = 0; i < cols; i++) {
+    colors[i] = [255];
+    for (let j = 0; j < rows; j++) {
+      colors[i][j] = color(255);  // Imposta il colore iniziale a grigio
+    }
+  }
+}
+
+function draw() {
+  background(255);
+  
+  // Disegna i cerchi con i colori correnti
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      fill(colors[i][j]);  // Usa il colore salvato
+      ellipse(i * circleSize + circleSize / 2, j * circleSize + circleSize / 2, circleSize * 0.8);
+    }
+  }
+}
+
+function mousePressed() { // Verifica se il mouse è pressato 
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      let x = i * circleSize + circleSize / 2;
+      let y = j * circleSize + circleSize / 2;
+      let d = dist(mouseX, mouseY, x, y)
+      
+       // Se il mouse è dentro il cerchio, cambia colore
+      if (d < circleSize / 2) {
+       colors[i][j] = color(random(255), random(255), random(255));  // Il colore del cerchio cambia in modo casuale
+        }
+      }
+    }
+  }
+
